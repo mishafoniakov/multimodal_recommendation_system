@@ -1,4 +1,10 @@
-"""Запуск этапа 6: кандидаты модели, CLIP и BERT."""
+"""
+О документе
+-----------
+Источник: таблица пар и `catboost_model.bin`.
+Цель: топ-5 соседей тремя способами — модель, CLIP cosine, BERT cosine.
+Результат: JSON Lines кандидатов в `artifacts/<source>/`.
+"""
 
 from __future__ import annotations
 

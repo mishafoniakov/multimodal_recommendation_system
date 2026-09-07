@@ -1,4 +1,10 @@
-"""Запуск этапа 1: картинки и тексты."""
+"""
+О документе
+-----------
+Источник: TSV related images (Яндекс) или CSV подписей Flickr.
+Цель: собрать карточку `img` + `txt` без сырых картинок в git.
+Результат: `dataset.json`, `image_big_text_dataset.json`.
+"""
 
 from __future__ import annotations
 

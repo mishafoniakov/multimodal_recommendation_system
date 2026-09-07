@@ -1,4 +1,12 @@
-"""Точка входа: python run.py --stage clip --source yandex"""
+"""
+О документе
+-----------
+Источник: локальные картинки и тексты (`--source yandex` или `flickr`).
+Цель: прогнать пайплайн от сбора карточек до топ-5 похожих изображений.
+Результат: артефакты в `artifacts/<source>/` (векторы, модель, коллаж).
+
+Точка входа: python run.py --stage clip --source yandex
+"""
 
 from __future__ import annotations
 

@@ -1,4 +1,10 @@
-"""Запуск этапа 3: BERT-эмбеддинги и склейка с CLIP."""
+"""
+О документе
+-----------
+Источник: JSON Lines текстов этапа 1 и CLIP этапа 2.
+Цель: вектор `[CLS]` длины 768 и inner join с CLIP по имени файла.
+Результат: `clip_bert.json` / `clip_bert_flickr.json`.
+"""
 
 from __future__ import annotations
 

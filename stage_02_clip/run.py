@@ -1,4 +1,10 @@
-"""Запуск этапа 2: CLIP-эмбеддинги."""
+"""
+О документе
+-----------
+Источник: папка JPEG (`YANDEX_IMAGES_DIR` / `FLICKR_IMAGES_DIR`).
+Цель: вектор картинки длины 512.
+Результат: `clip.json` или `clip_flickr.json`.
+"""
 
 from __future__ import annotations
 

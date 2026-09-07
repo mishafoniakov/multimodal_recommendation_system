@@ -1,4 +1,10 @@
-"""Запуск этапа 4: кластеры и пары кандидатов."""
+"""
+О документе
+-----------
+Источник: `clip_bert.json` (CLIP∥BERT, длина 1280).
+Цель: сузить кандидатов через MiniBatchKMeans, без полного перебора пар.
+Результат: `nearest_clusters.json`, `pairs_with_metrics.csv`.
+"""
 
 from __future__ import annotations
 
