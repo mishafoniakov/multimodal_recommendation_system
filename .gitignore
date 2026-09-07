@@ -1,0 +1,58 @@
+# Secrets and local env
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.envrc
+
+# Jupyter leftovers
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+catboost_info/
+
+# Models and large artifacts
+*.bin
+*.ckpt
+*.pt
+*.pth
+*.joblib
+*.pkl
+*.parquet
+*.arrow
+
+# Datasets (too large for GitHub), except the data folder readme
+data/*
+!data/README.md
+Dataset_preparation/*.json
+Dataset_preparation/*.csv
+Dataset_model/*.csv
+Dataset_model/*.json
+Dataset_model/*.bin
+Dataset_representation/**/*.json
+Dataset_representation/**/*.tsv
+Dataset_representation/**/*.txt
+Dataset_representation/**/*.csv
+*.jpg
+*.jpeg
+*.png
+*.webp
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+artifacts/
