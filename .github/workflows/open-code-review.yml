@@ -1,0 +1,51 @@
+name: OpenCodeReview PR Review
+
+# AI-ревью пул-реквестов через alibaba/open-code-review.
+# Пока не заданы OCR_LLM_URL и OCR_LLM_AUTH_TOKEN, шаг ревью пропускается
+# и workflow завершается успешно (зелёный no-op).
+#
+# Настройка (Settings -> Secrets and variables -> Actions):
+# По умолчанию настроено на DeepSeek (OpenAI-совместимый API):
+#   secret   OCR_LLM_AUTH_TOKEN     API-ключ DeepSeek — обязателен, без него ревью пропускается
+# Необязательные переопределения:
+#   secret   OCR_LLM_URL            по умолчанию https://api.deepseek.com
+#   variable OCR_LLM_MODEL          по умолчанию deepseek-chat
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: ocr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check LLM credentials
+        id: config
+        env:
+          OCR_LLM_TOKEN: ${{ secrets.OCR_LLM_AUTH_TOKEN }}
+        run: |
+          if [ -n "$OCR_LLM_TOKEN" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::OpenCodeReview не настроен: добавьте secret OCR_LLM_AUTH_TOKEN с API-ключом DeepSeek, чтобы включить ревью."
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run OpenCodeReview
+        if: steps.config.outputs.configured == 'true'
+        uses: alibaba/open-code-review@v1.14.3
+        with:
+          llm_url: ${{ secrets.OCR_LLM_URL || 'https://api.deepseek.com' }}
+          llm_auth_token: ${{ secrets.OCR_LLM_AUTH_TOKEN }}
+          llm_model: ${{ vars.OCR_LLM_MODEL || 'deepseek-chat' }}
+          llm_use_anthropic: 'false'
+          language: Russian
